@@ -16,7 +16,7 @@
         <jacksonbindversion>2.14.2</jacksonbindversion>
         <gsonversion>2.10.1</gsonversion>
         <javafakerversion>1.0.2</javafakerversion>
-        <apachcommomlang>3.12.0</apachcommomlang>
+       <apachcommomlang>3.12.0</apachcommomlang>
         <extentreport>5.0.9</extentreport>
         <lombok>1.18.26</lombok>
 
@@ -67,6 +67,11 @@
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>${extentreport}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.11</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
