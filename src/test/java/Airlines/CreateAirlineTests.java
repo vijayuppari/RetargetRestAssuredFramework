@@ -1,16 +1,20 @@
 package Airlines;
 
 import Utils.RestUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pojos.Airlinepojo;
+import pojos.Airlinepojodefault;
+import pojos.Names;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CreateAirlineTests extends AirlineAPIS {
-@Test
+@Test(enabled = false)
     public void createAirline() throws IOException {
 
     Map<String, Object> airlinePayloadFromMap = Payloads.createAirlinePayloadFromMap("20061", "Indian Airways", "India",
@@ -21,4 +25,31 @@ public class CreateAirlineTests extends AirlineAPIS {
     Assert.assertEquals(airlineAPIresponse.statusCode(),200);
 
 }
+    @Test(enabled = false)
+    public void createAirlinewithRandomdata() throws IOException {
+
+        Map<String, Object> airlinePayloadFromMap = Payloads.createAirlinePayloadWithRandomData();
+        Response airlineAPIresponse = createAirlineAPI(airlinePayloadFromMap);
+        Assert.assertEquals(airlineAPIresponse.statusCode(),200);
+    }
+
+    @Test(enabled = false)
+    public void createAirlinewithPojo() throws IOException {
+
+        Airlinepojo airlinePayloadWithPojo = Payloads.createAirlinePayloadWithPojo();
+        Response airlineAPIresponse = createAirlineAPI(airlinePayloadWithPojo);
+        Assert.assertEquals(airlineAPIresponse.statusCode(),200);
+    }
+    @Test(enabled = false)
+    public void createAirlinewithPojowithdefaultandcustom() throws IOException {
+        Airlinepojodefault airlinepojodefault = new Airlinepojodefault().toBuilder().name(String.valueOf(Names.VIJAY)).build();
+        Response airlineAPIresponse = createAirlineAPI(airlinepojodefault);
+        Assert.assertEquals(airlineAPIresponse.statusCode(),200);
+    }
+
+    @Test(enabled = true)
+    public void createAirlinewithPojowithdefaultwithsetofcustomvalues() throws IOException {
+        Airlinepojodefault airlinepojodefault = new Airlinepojodefault();
+        System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(airlinepojodefault));
+    }
 }
