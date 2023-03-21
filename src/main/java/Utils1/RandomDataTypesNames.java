@@ -8,5 +8,6 @@ public enum RandomDataTypesNames {
     LASTNAME,
     FULLNAME,
     CITY,
-    COUNTRY
+    COUNTRY,
+    SLOGON
 }

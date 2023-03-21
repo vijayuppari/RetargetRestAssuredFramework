@@ -1,6 +1,7 @@
 package Utils1;
 
 import net.datafaker.Faker;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class RandomDataGenerator {
 
@@ -28,6 +29,8 @@ public class RandomDataGenerator {
                 return faker.address().city();
             case COUNTRY:
                 return  faker.address().country();
+            case SLOGON:
+                return RandomStringUtils.randomAlphanumeric(6);
             default:
                 return "This type of random data type is not available";
         }
@@ -35,6 +38,10 @@ public class RandomDataGenerator {
 
     public static String getRandomNumber(int count){
         return faker.number().digits(count);
+    }
+
+    public static String getRandomSlogon(int count){
+        return RandomStringUtils.randomAlphabetic(10);
     }
 
     public static int getRangeofyear(){

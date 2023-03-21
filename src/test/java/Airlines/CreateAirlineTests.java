@@ -47,9 +47,27 @@ public class CreateAirlineTests extends AirlineAPIS {
         Assert.assertEquals(airlineAPIresponse.statusCode(),200);
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void createAirlinewithPojowithdefaultwithsetofcustomvalues() throws IOException {
         Airlinepojodefault airlinepojodefault = new Airlinepojodefault();
         System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(airlinepojodefault));
+    }
+
+    @Test(enabled = true)
+    public void createAirlineandverifyresponse() throws IOException {
+
+        Airlinepojodefault airlinepojodefault= new Airlinepojodefault();
+        Response response = createAirlineAPI(airlinepojodefault);
+
+        // First Way
+        Assert.assertEquals(response.jsonPath().getString("name"),airlinepojodefault.getName());
+
+        // Second way:
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Airlinepojodefault airlinepojodefault1 = objectMapper.readValue(response.getBody().asString(), Airlinepojodefault.class);
+        Assert.assertEquals(airlinepojodefault1,airlinepojodefault);
+
+
     }
 }
